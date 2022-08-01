@@ -2,28 +2,28 @@
 
 ## Pre- and postprocessing of data
 ### Preprocessing
-TODO expand
-- ASCII check
-- additional formatting checks should be included as if-else statements at line XXXXXX of file XXXXXX
-- timeout not currently implemented
-- after validity checks, remapping
-- all tokens except +, -, *, /, -1 (no space), (), [], {} are considered variable names and canonicalized accordingly.
-  - should expand list at line XXXXX of app.py if we need to generalize to other inputs
-- space tokenization, no BPE or subword segmentation applied
-- 
+Following preprocessing steps are applied:
+1) check that all input is ASCII 
+2) additional formatting checks should be included as if-else statements at line 95 of file app.py 
+3) timeout is not currently implemented
+4) after validity checks variable names are remapped into canonical order: a_0, a_1, ...
+5) all tokens except +, -, *, /, -1 (no space), (), [], {} are considered variable names and canonicalized accordingly.
+6) should expand list at line 105 of app.py if we need to generalize to other inputs
+7) space tokenization, no BPE or subword segmentation applied
+
 ### Postprocessing
-TODO expand
-- unremapping
-- tokens joined with spaces and returned as string
+After translation, canonicalized variable names are mapped back to the original variable names. 
+Then, tokens are joined with spaces and returned as a string.
 
 ## How to use: Browser UI
-- URL: TODO
-- Type SYM expressions in the left, hit go, get a MATH expression on the right
+Browser UI is currently not working on remote server due to firewall issues.
+Type SYM expressions in the left, hit go, get a MATH expression on the right
 
 ## How to use: JSON API
-1) Send a HTTP POST request to TODO URL:
+Currently not working on remote due to firewall issues.
+1) Send a HTTP POST request to  https://smellcps.isi.edu:6060/translate:
 ```commandline
- curl --data "source=<SYM EXPR>" http://TODO:6060/translate
+ curl -H "Content-Type: application/json" -d '{"source":"a_1 + a_2"}'  https://smellcps.isi.edu:6060/translate
 ```
 2) The JSON response will be:
 ```commandline
@@ -38,12 +38,6 @@ TODO expand
 ```
 You can also send multiple source expressions in one request.
 3) POST is the preferred method, but GET requests are also accepted.
-
-## Organization of code
-TODO
-
-## About the translation model
-TODO
 
 ## How to train a new model
 1. In the [math_to_symbexpr_map_generation/experiments](https://github.com/usc-isi-bass/math_to_symbexpr_map_generation/tree/exp/seq2seq_math/experiments) directory, make a new directory and copy over the following files from 15_remap_infix:
