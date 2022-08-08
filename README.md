@@ -21,9 +21,9 @@ Type SYM expressions in the left, hit go, get a MATH expression on the right
 
 ## How to use: JSON API
 Currently not working on remote due to firewall issues.
-1) Send a HTTP POST request to  https://smellcps.isi.edu:6060/translate:
+1) Send a HTTP POST request to smellcps.isi.edu:6060/translate:
 ```commandline
- curl -H "Content-Type: application/json" -d '{"source":"a_1 + a_2"}'  https://smellcps.isi.edu:6060/translate
+ curl -H "Content-Type: application/json" -d '{"source":"a_1 + a_2"}'  smellcps.isi.edu:6060/translate
 ```
 2) The JSON response will be:
 ```commandline
